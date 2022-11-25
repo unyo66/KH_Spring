@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitstudy.app.dao.BoardMapper">
+    <!--    게시글 등록-->
+    <insert id="insert" parameterType="BoardDto">
+        insert into board
+        (title, content, writer)
+        values
+        (#{title}, #{content}, #{writer})
+    </insert>
+
+    <!--    전체 게시글 개수 구하기-->
+    <select id="count" resultType="int">
+        SELECT count(*) FROM board
+    </select>
+
+    <!--    특정 게시글 한개 가져오기-->
+    <select id="select" parameterType="int" resultType="BoardDto">
+        SELECT * from board where bno = #{bno}
+    </select>
+
+    <!--    게시글 전체 가져오기 (정렬: 최근 게시물이 위로)-->
+    <select id="selectAll" resultType="BoardDto">
+        select * from board order by reg_date desc, bno desc
+    </select>
+
+    <!--    게시글 전체 가져오기(특정 번호부터 몇개)-->
+    <select id="selectPage" parameterType="map" resultType="BoardDto">
+        select * from board order by reg_date desc, bno desc
+        limit #{offset} #{pageSize}
+    </select>
+
+    <!--    게시글 수정-->
+    <update id="update" parameterType="BoardDto">
+        update board
+        set title=#{title},
+        content=#{content},
+        up_date=now()
+        where bno=#{bno}
+    </update>
+
+    <!--    조회수 1씩 올리기-->
+    <update id="increaseViewCount" parameterType="int" >
+        update board set view_Cnt = view_Cnt + 1
+        where bno = #{bno}
+    </update>
+
+    <!--    리뷰수 1씩 올리기-->
+    <update id="increaseCommentCount" parameterType="map" >
+        <!--        update board set comment_Cnt = comment_Cnt + #{cnt} where bno = #{bno}-->
+        update board set comment_Cnt = comment_Cnt + 1 where bno = #{bno}
+    </update>
+
+    <!--    전체 다 지우기-->
+    <delete id="deleteAll">
+        delete from board
+    </delete>
+
+    <delete id="delete" parameterType="map">
+        delete from board where bno=#{bno} and writer=#{writer}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

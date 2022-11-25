@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <!-- 아직 BoardDto 안만들거니까 잠시 주석 처리하기 -->
+        <!-- 여기는 별칭 정하는곳  boardMapper 에 resultType="BoardDto" 임  -->
+        <typeAlias alias="BoardDto" type="com.bitstudy.app.domain.Ex01_BoardDto"/>
+    </typeAliases>
+</configuration>

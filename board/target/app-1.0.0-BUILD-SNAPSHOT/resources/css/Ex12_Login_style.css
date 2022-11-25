@@ -1,0 +1,60 @@
+body
+        {
+            margin: 0;
+        }
+        form
+        {
+            width: 400px;
+            border: 1px solid #ffe178;
+            border-radius: 5px;
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0 80px;
+        }
+        #id, #pw
+        {
+            width: 300px;
+            height: 40px;
+            border: 1px solid #ffe178;
+            outline: none;
+            border-radius: 5px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        button
+        {
+            width: 300px;
+            height: 50px;
+            border: none;
+            bottom: 1px solid;
+            background-color: #ffe178;
+            color: #333;
+            font-size: 16px;
+            font-weight: 900;
+            margin: 20px 0 30px 0;
+        }
+        a
+        {
+            text-decoration: none;
+            color: inherit;
+        }
+        #msg
+        {
+            height: 30px;
+            font-size: 14px;
+            color: red;
+            margin-bottom: 20px;
+        }
+        .login_footer
+        {
+            width: 300px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+        }
