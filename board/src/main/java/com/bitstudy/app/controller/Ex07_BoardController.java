@@ -43,8 +43,17 @@ public class Ex07_BoardController {
     }
     @GetMapping("/read")
     public String read(Integer bno, Integer page, Integer pageSize, Model m) {
-        Ex01_BoardDto boardDto = boardService.read(bno);
-        return "redirect:/list";
+        try {
+            Ex01_BoardDto boardDto = boardService.read(bno);
+            // bno 번 글 읽어와서 board.jsp 뷰 화면에 정보 넘겨줄거니까 일단 boardDto 에 저장
+            m.addAttribute("boardDto", boardDto);
+            m.addAttribute("page", page);
+            m.addAttribute("pageSize", pageSize);
+
+            return "board";
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private boolean loginChk(HttpServletRequest request) {

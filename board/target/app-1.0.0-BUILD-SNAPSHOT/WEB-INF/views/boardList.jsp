@@ -104,7 +104,7 @@
                 <c:forEach var="boardDto" items="${list}">
                     <tr class="boardBody">
                         <td class="no">${boardDto.bno}</td>
-                        <td class="title"><a href="<c:url value="/board/read?bno=${boardDto.bno}&page=${ph.page}&pageSize=${ph.pageSize}"/>">${boardDto.title}</a></td>
+                        <td class="title"><a href="<c:url value="/board/read?bno=${boardDto.bno}&page=${ph.currPage}&pageSize=${ph.pageSize}"/>">${boardDto.title}</a></td>
                         <td class="writer">${boardDto.writer}</td>
                         <td class="regdate"><fmt:formatDate value="${boardDto.reg_date}" pattern="yyyy-MM-dd" type="date"/></td>
     <%--                    <c:choose>--%>
@@ -115,7 +115,7 @@
     <%--                            <td class="regdate"><fmt:formatDate value="${boardDto.reg_date}" pattern="yyyy-MM-dd" type="date"/></td>--%>
     <%--                        </c:otherwise>--%>
     <%--                    </c:choose>--%>
-                        <td class="viewcnt">${boardDto.view_cnt}</td>
+                        <td class="viewcnt">${boardDto.view_count}</td>
                     </tr>
                 </c:forEach>
             </tbody>
