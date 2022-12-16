@@ -1,0 +1,15 @@
+car4=com.bitstudy.app.Car4
+sportsCar4=com.bitstudy.app.SportsCar4
+truck4=com.bitstudy.app.Truck4
+car5=com.bitstudy.app.Car5
+sportsCar5=com.bitstudy.app.SportsCar5
+truck5=com.bitstudy.app.Truck5
+car6=com.bitstudy.app.Car6
+sportsCar6=com.bitstudy.app.SportsCar6
+truck6=com.bitstudy.app.Truck6
+car7=com.bitstudy.app.Car7
+sportsCar7=com.bitstudy.app.SportsCar7
+truck7=com.bitstudy.app.Truck7
+car8=com.bitstudy.app.Car8
+engine8=com.bitstudy.app.Engine8
+door8=com.bitstudy.app.Door8
