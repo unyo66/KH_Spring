@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @ToString
-public class Comment {
+public class Ex01_Comment_엔티티로_변경 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
