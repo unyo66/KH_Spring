@@ -10,9 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.LinkedHashSet;
 import java.util.Objects;
-import java.util.Set;
 
 /*  할일 : Lombok 사용하기
 *
@@ -37,7 +35,7 @@ import java.util.Set;
 @Entity
 @Getter
 @ToString
-public class Article {
+public class Ex01_Article_엔티티로_변경 {
 
     @Id //PK 지정 어노테이션
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,14 +55,7 @@ public class Article {
 
 
 
-    /*  양방향 바인딩
-    *
-    *
-    * */
-    @OrderBy("id") // 양방향 바인딩을 할건데 정렬 기준을 id로 하겠다는 뜻
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-    @ToString.Exclude // 맨 위의 ToString이 얘까지 돌리면 순환참조로 인한 성능저하를 일으킬 수 있어서 제외 (보통 댓글이 글을 참조하기 때문에 Article에 걸어준다.
-    private final Set<Comment> comments = new LinkedHashSet<>();
+    /* 양방향 바인딩 */
 
 
 
@@ -96,10 +87,10 @@ public class Article {
      * public / protected만 가능한데, 아무데서도 기본생성자를 안쓰이게 하고 싶어서 protected로 변경함
      * **/
 
-    protected Article(){}
+    protected Ex01_Article_엔티티로_변경(){}
 
     /* 사용자가 입력하는 값만 받기. 나머지는 시스템이 알아서 하게 해주면 됨.*/
-    private Article(String title, String content, String hashtag) {
+    private Ex01_Article_엔티티로_변경(String title, String content, String hashtag) {
         this.title = title;
         this.content = content;
         this.hashtag = hashtag;
@@ -110,8 +101,8 @@ public class Article {
     *   무조건 static으로 놔야함.
     *   장점 : static이라 생성자를 만들 필요없음 / return을 가지고 있기 때문에 상속 시 값을 확인할 수 있음
     *  */
-    public static Article of (String title, String content, String hashtag) {
-        return new Article(title, content, hashtag);
+    public static Ex01_Article_엔티티로_변경 of (String title, String content, String hashtag) {
+        return new Ex01_Article_엔티티로_변경(title, content, hashtag);
     }
 
     /*
@@ -134,7 +125,7 @@ public class Article {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Article article = (Article) o;
+        Ex01_Article_엔티티로_변경 article = (Ex01_Article_엔티티로_변경) o;
         return id.equals(article.id);
     }
 
