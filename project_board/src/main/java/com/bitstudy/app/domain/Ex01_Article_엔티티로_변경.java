@@ -32,7 +32,7 @@ import java.util.Objects;
         @Index(columnList = "create_at"),
         @Index(columnList = "create_by")
 })
-@Entity
+//@Entity
 @Getter
 @ToString
 public class Ex01_Article_엔티티로_변경 {
