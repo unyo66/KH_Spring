@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,6 +22,9 @@ import java.util.Set;
 *   2) getter / setter, toString 등의 Lombok 어노테이션 사용
 *   3) 동등성, 동일성 비교할 수 있는 코드 넣기
 * */
+
+
+@EntityListeners(AuditingEntityListener.class) //얘없으면 테스트 중 createAt 때문에 에러남(Ex04관련)
 
 /*
 * @Table : 엔티티와 매핑할 정보를 지정하고

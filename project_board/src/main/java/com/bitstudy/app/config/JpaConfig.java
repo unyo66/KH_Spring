@@ -13,10 +13,10 @@ import java.util.Optional;
 @Configuration
 
 /*
-* @EnableJpaAuditing : jpadㅔ서 자동으로 세팅하게 해줄때 사용하는 어노테이션
+* @EnableJpaAuditing : jpa에서 자동으로 세팅하게 해줄때 사용하는 어노테이션
 * */
 @EnableJpaAuditing
-public class jpaConfig {
+public class JpaConfig {
     @Bean
     public AuditorAware<String> auditorAware() {
         return () -> Optional.of("bitstudy");
