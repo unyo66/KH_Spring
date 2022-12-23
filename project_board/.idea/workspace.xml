@@ -64,9 +64,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="JpbToolWindowState">
-    <option name="isToolWindowVisible" value="false" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -113,7 +110,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AppApplicationTests">
+  <component name="RunManager" selected="Spring Boot.AppApplication">
     <configuration name="AppApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -145,8 +142,11 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="zulu-17" />
       <option name="PACKAGE_NAME" value="com.bitstudy.app" />
       <option name="MAIN_CLASS_NAME" value="com.bitstudy.app.AppApplicationTests" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -167,12 +167,19 @@
     </configuration>
     <configuration name="AppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ACTIVE_PROFILES" />
+      <option name="ALTERNATIVE_JRE_PATH" value="zulu-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <module name="app.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.bitstudy.app.AppApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Gradle.AppApplicationTests" />
+      <item itemvalue="JUnit.AppApplicationTests" />
+      <item itemvalue="Spring Boot.AppApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.AppApplicationTests" />
@@ -193,6 +200,11 @@
       <workItem from="1671448970329" duration="56000" />
       <workItem from="1671449033375" duration="4239000" />
       <workItem from="1671518387888" duration="16026000" />
+      <workItem from="1671786319493" duration="1209000" />
+      <workItem from="1671790124743" duration="315000" />
+      <workItem from="1671790450153" duration="19000" />
+      <workItem from="1671790476737" duration="172000" />
+      <workItem from="1671790656506" duration="1449000" />
     </task>
     <servers />
   </component>
