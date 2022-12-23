@@ -23,6 +23,20 @@ import java.util.Set;
 *   3) 동등성, 동일성 비교할 수 있는 코드 넣기
 * */
 
+/*  중복코드 관리
+*   Article과 Comment 에 있는 공통 필드(메타데이터, ID제외)들을 별도로 빼서 관리할거임.
+*   이유는 앞으로 Article과 Comment처럼 엮여있는 테이블 만들경우, 모든 domain 안의 파일에 많은 중복코드가 들어감.
+*   그래서 별도 파일에 공통되는거 다 몰아넣고 사용해보기
+*
+*   추출법
+*   1) @Embedded : 공통되는 필드들을 하나의 클래스로 만들고 @Embedded 있는 곳에서 치환하는 방식
+*           Class Tmp{}
+*           @Embedded
+*           Tmp tmp;
+*
+*  *2) @MappedSuperClass : 어노테이션이 붙은곳에서 사용
+*
+* */
 
 @EntityListeners(AuditingEntityListener.class) //얘없으면 테스트 중 createAt 때문에 에러남(Ex04관련)
 
@@ -41,7 +55,7 @@ import java.util.Set;
 @Entity
 @Getter
 @ToString
-public class Article {
+public class Article extends AuditingFields {
 
     @Id //PK 지정 어노테이션
     @GeneratedValue(strategy = GenerationType.IDENTITY)
