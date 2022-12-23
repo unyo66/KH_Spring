@@ -93,21 +93,21 @@ public class Article extends AuditingFields {
     * */
 
     //메타데이터
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime create_at;
-
-    @CreatedBy
-    @Column(nullable = false, length = 100)
-    private String create_by;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime modify_at;
-
-    @LastModifiedBy
-    @Column(nullable = false, length = 100)
-    private String modify_by;
+//    @CreatedDate
+//    @Column(nullable = false)
+//    private LocalDateTime create_at;
+//
+//    @CreatedBy
+//    @Column(nullable = false, length = 100)
+//    private String create_by;
+//
+//    @LastModifiedDate
+//    @Column(nullable = false)
+//    private LocalDateTime modify_at;
+//
+//    @LastModifiedBy
+//    @Column(nullable = false, length = 100)
+//    private String modify_by;
 
 
     /** Entity를 만들때는 무조건 기본 생성자가 필요함.
