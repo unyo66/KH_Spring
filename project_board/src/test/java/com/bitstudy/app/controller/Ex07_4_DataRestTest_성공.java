@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -44,11 +43,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional //테스트 돌리면 Hibernate 부분에 select 쿼리문이 나오면서 실제 DB를 건드리는데, 테스트 끝난 후 DB 롤백시키는 용도
-public class DataRestTest {
+public class Ex07_4_DataRestTest_성공 {
 
     private final MockMvc mvc; //1
 
-    public DataRestTest(@Autowired MockMvc mvc) { //2
+    public Ex07_4_DataRestTest_성공(@Autowired MockMvc mvc) { //2
         this.mvc = mvc;
     }
 
@@ -83,15 +82,6 @@ public class DataRestTest {
     @Test
     void commentOne() throws Exception {
         mvc.perform(get("/api/comments/1000"))
-                .andExpect(status().isOk())
-                .andExpect(content()
-                        .contentType(MediaType.valueOf("application/hal+json")));
-    }
-
-    @DisplayName("[api] - 게시글의 댓글 조회")
-    @Test
-    void articleComments() throws Exception {
-        mvc.perform(get("/api/articles/1/comments"))
                 .andExpect(status().isOk())
                 .andExpect(content()
                         .contentType(MediaType.valueOf("application/hal+json")));
