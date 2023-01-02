@@ -19,12 +19,12 @@ import java.util.List;
 class JpaRepositoryTest {
 
     //원래는 둘다 @Autowired가 붙어야 하는데, Junit5와 최신 버전의 스프링 부트를 이용하면 Test에서 생성자 주입 패턴을 사용할 수 있음.
-    private final Ex04_ArticleRepository_기본테스트용 articleRepository;
-    private final Ex05_CommentRepository_기본테스트용 commentRepository;
+    private final ArticleRepository articleRepository;
+    private final CommentRepository commentRepository;
 //    @Autowired
 //    private ArticleRepository articleRepository;
 
-    public JpaRepositoryTest(@Autowired Ex04_ArticleRepository_기본테스트용 articleRepository, @Autowired Ex05_CommentRepository_기본테스트용 commentRepository) {
+    public JpaRepositoryTest(@Autowired ArticleRepository articleRepository, @Autowired CommentRepository commentRepository) {
         this.articleRepository = articleRepository;
         this.commentRepository = commentRepository;
     }
