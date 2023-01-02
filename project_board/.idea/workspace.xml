@@ -81,28 +81,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/gohun/codes/KH_Spring/project_board&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;6fd232251ba9e66f5bc7137b177b960b&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/gohun/codes/KH_Spring/project_board",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "spring.configuration.checksum": "6fd232251ba9e66f5bc7137b177b960b"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.bitstudy.app.controller" />
@@ -118,7 +118,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DataRestTest.articleComments">
+  <component name="RunManager" selected="Spring Boot.AppApplication">
     <configuration name="DataRestTest.article" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="app.test" />
       <extension name="coverage">
@@ -261,7 +261,8 @@
       <workItem from="1671852900071" duration="635000" />
       <workItem from="1671889335820" duration="605000" />
       <workItem from="1672130777054" duration="14000" />
-      <workItem from="1672641969438" duration="4722000" />
+      <workItem from="1672641969438" duration="5251000" />
+      <workItem from="1672647825736" duration="7289000" />
     </task>
     <servers />
   </component>

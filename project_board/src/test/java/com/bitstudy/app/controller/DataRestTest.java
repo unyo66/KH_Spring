@@ -1,6 +1,7 @@
 package com.bitstudy.app.controller;
 
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 *
 * */
 
-//@WebMvcTest
+@Disabled("Spring Data Rest 통합데이터는 현재 불필요하므로 제외")
+@DisplayName("Data REST - API 테스트")
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional //테스트 돌리면 Hibernate 부분에 select 쿼리문이 나오면서 실제 DB를 건드리는데, 테스트 끝난 후 DB 롤백시키는 용도
@@ -52,6 +54,7 @@ public class DataRestTest {
         this.mvc = mvc;
     }
 
+//    @Disabled("구현중")
     @DisplayName("[api] - 게시글 리스트 전체 조회")
     @Test
     void articlesAll() throws Exception {

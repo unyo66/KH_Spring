@@ -86,7 +86,7 @@ public class Article extends AuditingFields {
 
 
 
-    /*
+    /**
     * jpa auditing : jpa에서 자동으로 세팅하게 해줄때 사용하는 기능
     * 이거하려면 config 파일이 별도로 있어야 한다.
     * config 패키지 만들어 jpaConfig 클래스 만들자
@@ -116,7 +116,7 @@ public class Article extends AuditingFields {
 
     protected Article(){}
 
-    /* 사용자가 입력하는 값만 받기. 나머지는 시스템이 알아서 하게 해주면 됨.*/
+    /** 사용자가 입력하는 값만 받기. 나머지는 시스템이 알아서 하게 해주면 됨.*/
     private Article(String title, String content, String hashtag) {
         this.title = title;
         this.content = content;
