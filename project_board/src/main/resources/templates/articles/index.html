@@ -7,11 +7,11 @@
     <title>게시판 페이지</title>
 </head>
 <body>
-<!--    <header id="header">헤더</header>-->
-    <div th:replace="~{header :: header}"></div>
+    <header id="header"></header>
+<!--    <div th:replace="~{header :: header}"></div>-->
 
     <main>
-        <form action="">
+        <form action="#">
             <select id="search_type" name="search_type">
                 <option value="">제목</option>
                 <option value="">본문</option>
@@ -24,6 +24,7 @@
         </form>
     </main>
 
-<div th:replace="~{footer :: footer}"></div>
+    <footer id="footer"></footer>
+<!--    <div th:replace="~{footer :: footer}"></div>-->
 </body>
 </html>
