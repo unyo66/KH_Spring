@@ -226,3 +226,6 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij+all,windows,macos,visualstudiocode
+project_board/.idea/workspace.xml
+
+project_board/.idea/vcs.xml
