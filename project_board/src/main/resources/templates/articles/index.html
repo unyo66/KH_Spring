@@ -1,30 +1,85 @@
+<!-- 타임리프의 deCoupled 로직 적용해보기.
+ 여기 파일을 다 HTML 로만 구성
+    th:replace 들을 다 삭제
+    -->
+
 <!DOCTYPE html>
-<!-- 이 파일은 thymeleaf 템플릿이라고 명시 -->
-<!--하지만! 2버전까지는 써줘야 했지만 3버전부터는 안 써줘도 되긴 함-->
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>게시판 페이지</title>
 </head>
+
 <body>
-    <header id="header"></header>
-<!--    <div th:replace="~{header :: header}"></div>-->
 
-    <main>
-        <form action="#">
-            <select id="search_type" name="search_type">
-                <option value="">제목</option>
-                <option value="">본문</option>
-                <option value="">id</option>
-                <option value="">닉네임</option>
-                <option value="">해시태그</option>
-            </select>
-            <input type="search" placeholder="검색어를 입력하세요" name="search_value" id="search_value">
-            <button type="submit">검색</button>
-        </form>
-    </main>
+<header id="header"></header>
 
-    <footer id="footer"></footer>
-<!--    <div th:replace="~{footer :: footer}"></div>-->
+<main>
+    <form action="#">
+        <select id="search-type" name="search-type">
+            <option value="">제목</option>
+            <option value="">본문</option>
+            <option value="">id</option>
+            <option value="">닉네임</option>
+            <option value="">해시태그</option>
+        </select>
+
+        <input type="search" placeholder="검색어를 입력하세요" name="search-value", id="search-value">
+
+        <button type="submit">검색</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>제목</th>
+            <th>해시태그</th>
+            <th>작성자</th>
+            <th>작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1번글</td>
+            <td>#java</td>
+            <td>bitstudy</td>
+            <td>2023-01-04</td>
+        </tr>
+        <tr>
+            <td>2번글</td>
+            <td>#spring</td>
+            <td>bitstudy</td>
+            <td>2023-01-03</td>
+        </tr>
+        <tr>
+            <td>3번글</td>
+            <td>#mysql</td>
+            <td>bitstudy</td>
+            <td>2023-01-01</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- 페이지네이션 -->
+    <nav>
+        <table>
+            <tbody>
+            <tr>
+                <td>이전</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>다음</td>
+            </tr>
+            </tbody>
+        </table>
+    </nav>
+</main>
+
+<footer id="footer"></footer>
+
 </body>
 </html>
