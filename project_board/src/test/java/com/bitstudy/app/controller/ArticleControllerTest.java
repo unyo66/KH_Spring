@@ -1,9 +1,11 @@
 package com.bitstudy.app.controller;
 
+import com.bitstudy.app.config.SecurityConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -18,6 +20,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * */
 
 //@WebMvcTest //모든 컨트롤러를 다 읽어들임
+
+@Import(SecurityConfig.class) // 테스트 코드에서도 SecurityConfig 가 있어야 시큐리티를 뚫고 들어갈 수 있음. 아니면 401 뜸
 @WebMvcTest(ArticleController.class) //지정된 컨트롤러만 읽어들임
 class ArticleControllerTest {
     private final MockMvc mvc;
@@ -62,7 +66,16 @@ class ArticleControllerTest {
 
     /**3) 해시태그 검색 테스트*/
     @Test
-    @DisplayName("[view][GET] 게시글 상세 페이지 - 정상호출")
+    @DisplayName("[view][GET] 게시글 검색 페이지 - 정상호출")
+    public void search() throws Exception {
+        mvc.perform(get("/articles/search_hashtag"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(view().name("articles/search"));
+    }
+    /**4) 해시태그 검색 테스트*/
+    @Test
+    @DisplayName("[view][GET] 해시태그 검색 페이지 - 정상호출")
     public void hashtag() throws Exception {
         mvc.perform(get("/articles/search_hashtag"))
                 .andExpect(status().isOk())
