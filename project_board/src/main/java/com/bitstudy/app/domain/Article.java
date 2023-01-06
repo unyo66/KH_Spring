@@ -54,12 +54,18 @@ import java.util.Set;
 })
 @Entity
 @Getter
-@ToString
+@ToString(callSuper = true) // 모든 필드의 toString 생성
+// 상위(UserAccount)에 있는 toString 까지 출력할 수 있도록 callSuper 넣음
 public class Article extends AuditingFields {
 
     @Id //PK 지정 어노테이션
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Setter
+    @ManyToOne(optional = false) // 단방향
+    private UserAccount userAccount;
+
 
     /* id와 메타데이터는 직접 set을 하면 안되니까 얘네만 따로 세터 주기*/
     @Setter
@@ -117,10 +123,15 @@ public class Article extends AuditingFields {
     protected Article(){}
 
     /** 사용자가 입력하는 값만 받기. 나머지는 시스템이 알아서 하게 해주면 됨.*/
-    private Article(String title, String content, String hashtag) {
+    private Article(UserAccount userAccount, String title, String content, String hashtag) {
+        this.userAccount = userAccount;
         this.title = title;
         this.content = content;
         this.hashtag = hashtag;
+    }
+
+    public static Article of(UserAccount userAccount, String title, String content, String hashtag){
+        return new Article(userAccount, title, content, hashtag);
     }
 
     /*  정적 팩토리 메서드(팩토리 메서드 패턴 중 하나)
@@ -128,9 +139,6 @@ public class Article extends AuditingFields {
     *   무조건 static으로 놔야함.
     *   장점 : static이라 생성자를 만들 필요없음 / return을 가지고 있기 때문에 상속 시 값을 확인할 수 있음
     *  */
-    public static Article of (String title, String content, String hashtag) {
-        return new Article(title, content, hashtag);
-    }
 
     /*
     * 만약 Article 클래스를 이용해서 게시글들을 list에 담아서 화면을 구성할건데, 그걸 하려면 Collection을 이용해야 한다.

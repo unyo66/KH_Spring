@@ -22,8 +22,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
+	// spring security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
 	//thymeleaf
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	// thymleaf + security
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
 	//rest, rest HAL
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'

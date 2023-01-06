@@ -1,5 +1,7 @@
 package com.bitstudy.app.repository;
 import com.bitstudy.app.domain.Article;
+import com.bitstudy.app.domain.UserAccount;
+import org.apache.catalina.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ class JpaRepositoryTest {
     //원래는 둘다 @Autowired가 붙어야 하는데, Junit5와 최신 버전의 스프링 부트를 이용하면 Test에서 생성자 주입 패턴을 사용할 수 있음.
     private final ArticleRepository articleRepository;
     private final CommentRepository commentRepository;
+    @Autowired
+    private UserAccountRepository userAccountRepository;
 //    @Autowired
 //    private ArticleRepository articleRepository;
 
@@ -61,8 +65,11 @@ class JpaRepositoryTest {
         //기존꺼 카운트
         long prevCount = articleRepository.count();
 
+//        UserAccount newUserAccount = UserAccount.of("bitstudy", "asdf", "bitstudy@email.com", "bitstudy", "bitstudymemo");
+
+        UserAccount newUserAccount = userAccountRepository.save(UserAccount.of("bitstudy", "asdf", "bitstudy@email.com", "bitstudy", "bitstudymemo"));
         //insert 하기
-        Article newArticle = Article.of("hi", "hi", "hi");
+        Article newArticle = Article.of(newUserAccount, "hi", "hi", "hi");
         articleRepository.save(newArticle);
 
         //기존꺼랑 현재꺼 갯수 차이 구하기
