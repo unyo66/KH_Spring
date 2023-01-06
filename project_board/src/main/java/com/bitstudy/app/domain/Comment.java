@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Table(indexes = {
         @Index(columnList = "content"),
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
 })
 @Entity
 @Getter
-@ToString
+@ToString(callSuper = true)
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +32,10 @@ public class Comment {
     @Setter
     @ManyToOne(optional = false)
     private Article article;
+
+    @Setter
+    @ManyToOne(optional = false)
+    private UserAccount userAccount;
 
 
     @Setter
@@ -51,4 +56,30 @@ public class Comment {
     @Column(nullable = false, length = 100)
     @LastModifiedBy
     private String modify_by;
+
+    protected Comment() {
+    }
+
+    private Comment(Article article, UserAccount userAccount, String content) {
+        this.article = article;
+        this.userAccount = userAccount;
+        this.content = content;
+    }
+
+    public static Comment of(Article article, UserAccount userAccount, String content) {
+        return new Comment(article, userAccount, content);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return id.equals(comment.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
