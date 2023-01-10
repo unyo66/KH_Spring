@@ -22,14 +22,14 @@ public record ArticleDto( /* 우선 엔티티가 가지고 있는 모든 정보�
         String title,
         String content,
         String hashtag,
-        LocalDateTime create_at,
-        String create_by,
-        LocalDateTime modify_at,
-        String modify_by
+        LocalDateTime createdAt,
+        String createdBy,
+        LocalDateTime modifiedAt,
+        String modifiedBy
 ) {
 
-    public static ArticleDto of(Long id, UserAccountDto userAccountDto, String title, String content, String hashtag, LocalDateTime create_at, String create_by, LocalDateTime modify_at, String modify_by) {
-        return new ArticleDto(id, userAccountDto, title, content, hashtag, create_at, create_by, modify_at, modify_by);
+    public static ArticleDto of(Long id, UserAccountDto userAccountDto, String title, String content, String hashtag, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+        return new ArticleDto(id, userAccountDto, title, content, hashtag, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
     /* entity를 매개변수로 입력하면 ArticleDto로 변환해주는 메서드.
@@ -43,10 +43,10 @@ public record ArticleDto( /* 우선 엔티티가 가지고 있는 모든 정보�
                 entity.getTitle(),
                 entity.getContent(),
                 entity.getHashtag(),
-                entity.getCreate_at(),
-                entity.getCreate_by(),
-                entity.getModify_at(),
-                entity.getModify_by()
+                entity.getCreatedAt(),
+                entity.getCreatedBy(),
+                entity.getModifiedAt(),
+                entity.getModifiedBy()
         );
     }
 

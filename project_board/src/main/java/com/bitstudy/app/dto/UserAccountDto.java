@@ -7,19 +7,19 @@ import java.time.LocalDateTime;
 
 public record UserAccountDto(
         Long id,
-        String user_id,
-        String user_pw,
+        String userId,
+        String userPw,
         String email,
         String nickname,
         String memo,
-        LocalDateTime create_at,
-        String create_by,
-        LocalDateTime modify_at,
-        String modify_by
+        LocalDateTime createdAt,
+        String createdBy,
+        LocalDateTime modifiedAt,
+        String modifiedBy
 ) {
 
-    public static UserAccountDto of(Long id, String user_id, String user_pw, String email, String nickname, String memo, LocalDateTime create_at, String create_by, LocalDateTime modify_at, String modify_by) {
-        return new UserAccountDto( id, user_id, user_pw, email, nickname, memo, create_at, create_by, modify_at, modify_by);
+    public static UserAccountDto of(Long id, String userId, String userPw, String email, String nickname, String memo, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+        return new UserAccountDto( id, userId, userPw, email, nickname, memo, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -27,23 +27,23 @@ public record UserAccountDto(
     public static UserAccountDto from(UserAccount entity) {
         return new UserAccountDto(
                 entity.getId(),
-                entity.getUser_id(),
-                entity.getUser_pw(),
+                entity.getUserId(),
+                entity.getUserPw(),
                 entity.getEmail(),
                 entity.getNickname(),
                 entity.getMemo(),
-                entity.getCreate_at(),
-                entity.getCreate_by(),
-                entity.getModify_at(),
-                entity.getModify_by()
+                entity.getCreatedAt(),
+                entity.getCreatedBy(),
+                entity.getModifiedAt(),
+                entity.getModifiedBy()
         );
     }
 
     /* 위에거랑 반대. dto 를 주면 엔티티를 생성하는 메서드 */
     public UserAccount toEntity() {
         return UserAccount.of(
-                user_id,
-                user_pw,
+                userId,
+                userPw,
                 email,
                 nickname,
                 memo
