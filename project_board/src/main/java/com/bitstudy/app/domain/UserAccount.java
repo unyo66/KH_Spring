@@ -12,10 +12,10 @@ import java.util.Objects;
 @Getter
 @ToString
 @Table(indexes = {
-        @Index(columnList = "user_id"),
+        @Index(columnList = "userId"),
         @Index(columnList = "email" , unique = true),
-        @Index(columnList = "create_at"),
-        @Index(columnList = "create_by")
+        @Index(columnList = "createdAt"),
+        @Index(columnList = "createdBy")
 })
 @Entity
 public class UserAccount extends AuditingFields {
@@ -24,8 +24,8 @@ public class UserAccount extends AuditingFields {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter @Column(nullable = false, length = 50) private String user_id;
-    @Setter @Column(nullable = false) private String user_pw;
+    @Setter @Column(nullable = false, length = 50) private String userId;
+    @Setter @Column(nullable = false) private String userPw;
     @Setter @Column(length = 100) private String email;
     @Setter @Column(length = 100) private String nickname;
     @Setter private String memo;
@@ -35,16 +35,16 @@ public class UserAccount extends AuditingFields {
 
     protected UserAccount() {}
 
-    private UserAccount(String user_id, String user_pw, String email, String nickname, String memo) {
-        this.user_id = user_id;
-        this.user_pw = user_pw;
+    private UserAccount(String userId, String userPw, String email, String nickname, String memo) {
+        this.userId = userId;
+        this.userPw = userPw;
         this.email = email;
         this.nickname = nickname;
         this.memo = memo;
     }
 
-    public static UserAccount of(String user_id, String user_pw, String email, String nickname, String memo){
-        return new UserAccount(user_id, user_pw, email, nickname, memo);
+    public static UserAccount of(String userId, String userPw, String email, String nickname, String memo){
+        return new UserAccount(userId, userPw, email, nickname, memo);
     }
 
     @Override

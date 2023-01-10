@@ -93,7 +93,7 @@ public class DataRestTest {
 
     @DisplayName("[api] - 게시글의 댓글 조회")
     @Test
-    void articleComments() throws Exception {
+    void comments() throws Exception {
         mvc.perform(get("/api/articles/1/comments"))
                 .andExpect(status().isOk())
                 .andExpect(content()

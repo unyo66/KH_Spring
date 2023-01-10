@@ -38,7 +38,7 @@ import java.util.Set;
 *
 * */
 
-@EntityListeners(AuditingEntityListener.class) //얘없으면 테스트 중 createAt 때문에 에러남(Ex04관련)
+@EntityListeners(AuditingEntityListener.class) //얘없으면 테스트 중 createdAt 때문에 에러남(Ex04관련)
 
 /*
 * @Table : 엔티티와 매핑할 정보를 지정하고
@@ -49,8 +49,8 @@ import java.util.Set;
 @Table(indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashtag"),
-        @Index(columnList = "create_at"),
-        @Index(columnList = "create_by")
+        @Index(columnList = "createdAt"),
+        @Index(columnList = "createdBy")
 })
 @Entity
 @Getter
@@ -101,19 +101,19 @@ public class Article extends AuditingFields {
     //메타데이터
 //    @CreatedDate
 //    @Column(nullable = false)
-//    private LocalDateTime create_at;
+//    private LocalDateTime createdAt;
 //
 //    @CreatedBy
 //    @Column(nullable = false, length = 100)
-//    private String create_by;
+//    private String createdBy;
 //
 //    @LastModifiedDate
 //    @Column(nullable = false)
-//    private LocalDateTime modify_at;
+//    private LocalDateTime modifiedAt;
 //
 //    @LastModifiedBy
 //    @Column(nullable = false, length = 100)
-//    private String modify_by;
+//    private String modifiedBy;
 
 
     /** Entity를 만들때는 무조건 기본 생성자가 필요함.
