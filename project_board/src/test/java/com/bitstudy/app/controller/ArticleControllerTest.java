@@ -1,15 +1,30 @@
 package com.bitstudy.app.controller;
 
 import com.bitstudy.app.config.SecurityConfig;
+import com.bitstudy.app.dto.ArticleWithCommentsDto;
+import com.bitstudy.app.dto.CommentDto;
+import com.bitstudy.app.dto.UserAccountDto;
+import com.bitstudy.app.repository.ArticleRepository;
+import com.bitstudy.app.service.ArticleService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDateTime;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -26,6 +41,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ArticleControllerTest {
     private final MockMvc mvc;
 
+    @MockBean // 실제 articleService 를 사용하지 않기 위해 진짜 객체 대신 테스트용 객체를 Bean 으로 등록
+    private ArticleService articleService;
+    @Autowired
+    private ArticleRepository articleRepository;
+
     public ArticleControllerTest(@Autowired MockMvc mvc){
         this.mvc = mvc;
     }
@@ -34,6 +54,7 @@ class ArticleControllerTest {
     @Test
     @DisplayName("[view][GET] 게시글 리스트 (게시판) 페이지 - 정상호출")
     public void articlesAll() throws Exception {
+        given(articleService.searchArticles(eq(null), eq(null), any(Pageable.class))).willReturn(Page.empty());
         mvc.perform(get("/articles"))
                 // 상태가 200이니?
                 .andExpect(status().isOk())
@@ -50,18 +71,23 @@ class ArticleControllerTest {
                 //이 뷰에서는 게시글들이 떠야 하는데, 그 말은 서버에서 데이터들을 가져와 모델에 넣었다는 뜻.
                 // 모델에 키값이 articles 인 데이터가 있는지 확인
                 .andExpect(model().attributeExists("articles"));
+        then(articleService).should().searchArticles(eq(null), eq(null), any(Pageable.class));
     }
 
     /**2) 게시글 상세 테스트*/
     @Test
     @DisplayName("[view][GET] 게시글 상세 페이지 - 정상호출")
     public void articleOne() throws Exception {
+
+        Long articleId = 1L;
+//        given(articleService.getArticle(articleId)).willReturn()
         mvc.perform(get("/articles/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("articles/detail"))
                 .andExpect(model().attributeExists("article"))
                 .andExpect(model().attributeExists("comments"));
+//        then(articleService).should()
     }
 
     /**3) 해시태그 검색 테스트*/
@@ -81,5 +107,36 @@ class ArticleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("articles/search_hashtag"));
+    }
+
+    ////////////////////////////////////////////
+
+    private UserAccountDto createUserAccountDto() {
+        return UserAccountDto.of(
+                1L,
+                "bitstudy",
+                "asdf",
+                "bitstudy@email.com",
+                "bitstudy",
+                "memomemo",
+                LocalDateTime.now(),
+                "bitstudy",
+                LocalDateTime.now(),
+                "bitstudy"
+        );
+    }
+    private ArticleWithCommentsDto createArticleWithCommentsDto() {
+        return ArticleWithCommentsDto.of(
+                1L,
+                createUserAccountDto(),
+                Set.of(),
+                "title",
+                "content",
+                "#java",
+                LocalDateTime.now(),
+                "bitstudy",
+                LocalDateTime.now(),
+                "bitstudy"
+        );
     }
 }

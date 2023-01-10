@@ -14,8 +14,8 @@ import java.util.Objects;
 
 @Table(indexes = {
         @Index(columnList = "content"),
-        @Index(columnList = "create_at"),
-        @Index(columnList = "create_by")
+        @Index(columnList = "createdAt"),
+        @Index(columnList = "createdBy")
 })
 @Entity
 @Getter
@@ -26,7 +26,7 @@ public class Comment {
     private Long id;
 
     /*  연관관계 매핑
-    *   연관관계 없이 만들면 private Long article_id; 이런식으로(관계형 DB 스타일)
+    *   연관관계 없이 만들면 private Long articleId; 이런식으로(관계형 DB 스타일)
     *   그런데 여기서는 Article 과 Comment 가 관계를 맺고 있는걸 객체지향적으로 표현하기 위해 이렇게 씀.
     * */ 
     @Setter
@@ -46,16 +46,16 @@ public class Comment {
     //메타데이터
     @Column(nullable = false)
     @CreatedDate
-    private LocalDateTime create_at;
+    private LocalDateTime createdAt;
     @Column(nullable = false, length = 100)
     @CreatedBy
-    private String create_by;
+    private String createdBy;
     @Column(nullable = false)
     @LastModifiedDate
-    private LocalDateTime modify_at;
+    private LocalDateTime modifiedAt;
     @Column(nullable = false, length = 100)
     @LastModifiedBy
-    private String modify_by;
+    private String modifiedBy;
 
     protected Comment() {
     }

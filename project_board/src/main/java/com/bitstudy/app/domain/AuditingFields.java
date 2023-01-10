@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 *
 * */
 
-@EntityListeners(AuditingEntityListener.class) //얘없으면 테스트 중 createAt 때문에 에러남(Ex04관련)
+@EntityListeners(AuditingEntityListener.class) //얘없으면 테스트 중 createdAt 때문에 에러남(Ex04관련)
 @MappedSuperclass
 @Getter
 @ToString
@@ -29,17 +29,17 @@ public class AuditingFields {
     //메타데이터
     @CreatedDate
     @Column(nullable = false)
-    private LocalDateTime create_at;
+    private LocalDateTime createdAt;
 
     @CreatedBy
     @Column(nullable = false, length = 100)
-    private String create_by;
+    private String createdBy;
 
     @LastModifiedDate
     @Column(nullable = false)
-    private LocalDateTime modify_at;
+    private LocalDateTime modifiedAt;
 
     @LastModifiedBy
     @Column(nullable = false, length = 100)
-    private String modify_by;
+    private String modifiedBy;
 }

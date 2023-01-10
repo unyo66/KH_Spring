@@ -4,6 +4,8 @@ import com.bitstudy.app.domain.Article;
 import com.bitstudy.app.domain.QArticle;
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -23,6 +25,12 @@ public interface ArticleRepository extends
      *       2. 검색용 필드 추가
      * */
 
+    /** 검색 메서드 */
+    Page<Article> findByTitleContaining(String title, Pageable pageable);
+    Page<Article> findByContentContaining(String content, Pageable pageable);
+    Page<Article> findByUserAccount_UserIdContaining(String userId, Pageable pageable);
+    Page<Article> findByUserAccount_NicknameContaining(String nickname, Pageable pageable);
+    Page<Article> findByHashtagContaining(String hashtag, Pageable pageable);
 
     @Override
     default void customize(QuerydslBindings bindings, QArticle root) {
@@ -33,16 +41,16 @@ public interface ArticleRepository extends
         bindings.excludeUnlistedProperties(true);
 
         // 2. 검색용 필드 추가
-        // including 을 이용해서 title, content, create_by, create_at, hashtag 검색 가능하게 만들기
+        // including 을 이용해서 title, content, createdBy, createdAt, hashtag 검색 가능하게 만들기
         // including 사용법 : root.필드명
-        bindings.including(root.title, root.content, root.create_at, root.create_by, root.hashtag);
+        bindings.including(root.title, root.content, root.createdAt, root.createdBy, root.hashtag);
 
         // 3. 정확한 검색 말고 or 검색도 가능하게 하기
         // bindings.bind(root.title).first(StringExpression::likeIgnoreCase); //like "%${문자열}"
         bindings.bind(root.title).first(StringExpression::containsIgnoreCase); //like "%${문자열}%"
         bindings.bind(root.content).first(StringExpression::containsIgnoreCase);
-        bindings.bind(root.create_at).first(DateTimeExpression::eq);
-        bindings.bind(root.create_by).first(StringExpression::containsIgnoreCase);
+        bindings.bind(root.createdAt).first(DateTimeExpression::eq);
+        bindings.bind(root.createdBy).first(StringExpression::containsIgnoreCase);
         bindings.bind(root.hashtag).first(StringExpression::containsIgnoreCase);
 
         //다 됐으면 빌드하고 Hal 가서 체크하기

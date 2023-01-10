@@ -1,18 +1,15 @@
 package com.bitstudy.app.repository;
+import com.bitstudy.app.config.JpaConfig;
 import com.bitstudy.app.domain.Article;
 import com.bitstudy.app.domain.UserAccount;
-import org.apache.catalina.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
-import com.bitstudy.app.config.JpaConfig;
-import static org.assertj.core.api.Assertions.*;
-
-
 
 import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
 // 슬라이드 테스트(유닛 테스트) : 메서드들 각각 테스트한 결과를 서로 못보게 잘라서 만드는것
 @DataJpaTest
@@ -23,14 +20,15 @@ class JpaRepositoryTest {
     //원래는 둘다 @Autowired가 붙어야 하는데, Junit5와 최신 버전의 스프링 부트를 이용하면 Test에서 생성자 주입 패턴을 사용할 수 있음.
     private final ArticleRepository articleRepository;
     private final CommentRepository commentRepository;
-    @Autowired
     private UserAccountRepository userAccountRepository;
-//    @Autowired
-//    private ArticleRepository articleRepository;
 
-    public JpaRepositoryTest(@Autowired ArticleRepository articleRepository, @Autowired CommentRepository commentRepository) {
+    public JpaRepositoryTest(
+            @Autowired ArticleRepository articleRepository,
+            @Autowired CommentRepository commentRepository,
+            @Autowired UserAccountRepository userAccountRepository) {
         this.articleRepository = articleRepository;
         this.commentRepository = commentRepository;
+        this.userAccountRepository = userAccountRepository;
     }
 
     //트랜잭션 시 사용하는 메서드
