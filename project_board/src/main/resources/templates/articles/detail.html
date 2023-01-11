@@ -32,12 +32,20 @@
 
   <main id="article-main" class="container">
     <div class="row g-5">
-      <h1 class="title">1번 글 제목</h1>
-<!--      aside-->
-      <aside class="col-md-5 col-lg-4 order-md-last">
+      <h2 id="title">1번 글 제목</h2>
+
+
+<div class="mainbox col-12">
+      <div class="col-md-7 col-lg-8">
+        <div id="bonmoon">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+
+      </div>
+      <!--      aside-->
+      <aside class="col-md-4 col-lg-3 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">작성자</span>
-          <span class="badge bg-primary rounded-pill">3</span>
         </h4>
         <ul class="list-group mb-3">
           <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -58,76 +66,29 @@
             </div>
             <span class="text-muted">createdAt</span>
           </li><li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0" id="hashtag">#스프링게시판</h6>
-            </div>
-            <span class="text-muted">hashtag</span>
-          </li>
+          <div>
+            <h6 class="my-0" id="hashtag">#스프링게시판</h6>
+          </div>
+          <span class="text-muted">hashtag</span>
+        </li>
         </ul>
       </aside>
+</div>
+      <div class="col-md-10 comment-area">
+        <input type="text" placeholder="댓글을 입력해주세요" class="form-control" id="search" name="search">
+        <button type="submit" class="btn btn-primary col-2">작성 완료 </button></div>
 
-
-      <div class="col-md-7 col-lg-8">
-        <div class="bonmoon">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-
-        <div class="comment-area">
-          <div class="col-12"><div class="row no-gutters"><div class="col-lg-3 col-md-3 col-sm-12 p-0"></div><div class="col-lg-10 col-md-6 col-sm-12 p-0"> <input type="text" placeholder="Search..." class="form-control" id="search" name="search"></div><div class="col-lg-2 col-md-3 col-sm-12 p-0"> <button type="submit" class="btn btn-primary">작성 완료 </button></div></div></div>
-
-          <table class="table widget-26">
+        <table class="table widget-26" id="comment-table">
           <tbody>
           <tr>
             <td>
-              <div class="widget-26-job-emp-img">
-                <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="Company" />
-              </div>
+              <div class="comment-nickname">bitstudy</div>
+              <div class="comment-createAt">2023-01-26</div>
             </td>
-            <td>
-              <div class="widget-26-job-title">
-                <a href="#">Senior Software Engineer / Developer</a>
-                <p class="m-0"><a href="#" class="employer-name">Axiom Corp.</a> <span class="text-muted time">1 days ago</span></p>
-              </div>
-            </td>
-            <td>
-              <div class="widget-26-job-info">
-                <p class="type m-0">Full-Time</p>
-                <p class="text-muted m-0">in <span class="location">London, UK</span></p>
-              </div>
-            </td>
-            <td>
-              <div class="widget-26-job-salary">$ 50/hr</div>
-            </td>
-            <td>
-              <div class="widget-26-job-category bg-soft-base">
-                <i class="indicator bg-base"></i>
-                <span>Software Development</span>
-              </div>
-            </td>
-            <td>
-              <div class="widget-26-user-report">
-                <a href="#">
-                  <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="feather feather-star"
-                  >
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                  </svg>
-                </a>
-              </div>
-            </td>
+            <td class="comment-content">댓글내용 댓글내용 댓글내용 ㅋㅋㅋ</td>
           </tr>
           </tbody>
         </table>
-        </div>
       </div>
     </div>
   </main>

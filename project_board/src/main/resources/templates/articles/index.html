@@ -45,11 +45,9 @@
                                 <div class="row no-gutters">
                                     <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                         <select class="form-control" id="exampleFormControlSelect1">
-                                            <option>검색</option>
-                                            <option>해시태그</option>
                                             <option>제목</option>
+                                            <option>해시태그</option>
                                             <option>작성자</option>
-                                            <option>작성일</option>
                                         </select></div>
                                     <div class="col-lg-8 col-md-6 col-sm-12 p-0"><input type="text"
                                                                                         placeholder="Search..."
@@ -126,7 +124,7 @@
                                 </div>
                                 <div class="result-body">
                                     <div class="table-responsive">
-                                        <table class="table widget-26">
+                                        <table class="table" id="article-table">
                                             <thead>
                                             <tr>
                                                 <th>해시태그</th>
@@ -137,64 +135,12 @@
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td>
-                                                    <div class="widget-26-job-salary">#java</div>
+                                                <td class="article-hashtag">#java</td>
+                                                <td class="article-title">
+                                                    <a href="#">1번 글 제목입니다.</a>
                                                 </td>
-                                                <td>
-                                                    <div class="widget-26-job-title">
-                                                        <a href="#">1번 글 제목입니다.</a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="widget-26-job-info">
-                                                        <p class="type m-0">bitstudy</p>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="widget-26-job-info">
-                                                        <p class="type m-0">2023-01-03</p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="widget-26-job-salary">#java</div>
-                                                </td>
-                                                <td>
-                                                    <div class="widget-26-job-title">
-                                                        <a href="#">1번 글 제목입니다.</a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="widget-26-job-info">
-                                                        <p class="type m-0">bitstudy</p>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="widget-26-job-info">
-                                                        <p class="type m-0">2023-01-03</p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="widget-26-job-salary">#java</div>
-                                                </td>
-                                                <td>
-                                                    <div class="widget-26-job-title">
-                                                        <a href="#">1번 글 제목입니다.</a>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="widget-26-job-info">
-                                                        <p class="type m-0">bitstudy</p>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="widget-26-job-info">
-                                                        <p class="type m-0">2023-01-03</p>
-                                                    </div>
-                                                </td>
+                                                <td class="article-nickname">bitstudy</td>
+                                                <td class="article-createdAt">2023-01-03</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -203,16 +149,21 @@
                             </div>
                         </div>
                     </div>
-                    <nav class="d-flex justify-content-center">
+                    <nav class="d-flex justify-content-center" id="pagination">
                         <ul class="pagination pagination-base pagination-boxed pagination-square mb-0">
-                            <li class="page-item"><a class="page-link no-border" href="#"> <span
-                                    aria-hidden="true">«</span> <span class="sr-only"></span> </a></li>
+                            <li class="page-item">
+                                <a class="page-link no-border" href="#">
+                                    <span aria-hidden="true">«</span>
+                                    <span class="sr-only"></span>
+                                </a>
+                            </li>
                             <li class="page-item active"><a class="page-link no-border" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link no-border" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link no-border" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link no-border" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link no-border" href="#"> <span
-                                    aria-hidden="true">»</span> <span class="sr-only"></span> </a></li>
+                            <li class="page-item">
+                                <a class="page-link no-border" href="#">
+                                    <span aria-hidden="true">»</span>
+                                    <span class="sr-only"></span>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

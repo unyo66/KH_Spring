@@ -5,7 +5,34 @@
 
     <attr sel="#article-table">
         <attr sel="tbody" th:remove="all-but-first">
-
+            <attr sel="tr[0]" th:each="article : ${articles}">
+<!--                    <attr sel="td.article-hashtag" th:if="${article.hashtag != null}" th:text="${article.hashtag}"/>-->
+<!--                    <attr sel="td.article-hashtag" th:unless="${article.hashtag != null}" th:text="no hashtag"/>-->
+                    <attr sel="td.article-hashtag" th:text="${article.hashtag}"/>
+                    <attr sel="td.article-title/a" th:text="${article.title}" th:href="@{'/articles/' + ${article.id}}"/>
+                    <attr sel="td.article-nickname" th:text="${article.nickname}"/>
+                    <attr sel="td.article-createdAt" th:datetime="${article.createdAt}" th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd')}"/>
+            </attr>
         </attr>
+    </attr>
+
+    <!-- 페이지네이션 -->
+    <attr sel="#pagination">
+        <attr sel="li[0]/a"
+              th:text="이전"
+              th:href="@{/articles(page=${articles.number - 1})}"
+              th:class="'page-link' + (${articles.number <= 0 ? ' disabled' : ''})"
+        />
+        <attr sel="li[1]" th:class="'page-item' + (${pageNumber} == ${articles.number} ? ' active' : '')" th:each="pageNumber : ${paginationBarNumbers}">
+            <attr sel="a"
+                  th:text="${pageNumber + 1}"
+                  th:href="@{/articles(page=${pageNumber})}"
+                  th:class="page-link" />
+        </attr>
+        <attr sel="li[2]/a"
+              th:text="다음"
+              th:href="@{/articles(page=${articles.number + 1})}"
+              th:class="'page-link' + (${articles.number} >= ${articles.totalPages - 1} ? ' disabled' : '')"
+        />
     </attr>
 </thlogic>

@@ -2,26 +2,16 @@ body{
     /*margin-top:20px;*/
 }
 
-.widget-26 {
+#article-table {
     color: #3c4142;
     font-weight: 400;
 }
 
-.widget-26 tr:first-child td {
-    border: 0;
-}
-
-.widget-26 .widget-26-job-emp-img img {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-}
-
-.widget-26 .widget-26-job-title {
+.article-title {
     min-width: 200px;
 }
 
-.widget-26 .widget-26-job-title a {
+.article-title a {
     font-weight: 400;
     font-size: 1rem;
     color: #3c4142;
@@ -29,60 +19,33 @@ body{
     text-decoration: none;
 }
 
-.widget-26 .widget-26-job-title a:hover {
+.article-title a:hover {
     color: #68CBD7;
     text-decoration: none;
 }
 
-.widget-26 .widget-26-job-title .employer-name {
-    margin: 0;
-    line-height: 1.5;
-    font-weight: 400;
-    color: #3c4142;
-    font-size: 0.8125rem;
-    color: #3c4142;
-}
-
-.widget-26 .widget-26-job-title .employer-name:hover {
-    color: #68CBD7;
-    text-decoration: none;
-}
-
-.widget-26 .widget-26-job-title .time {
-    font-size: 12px;
-    font-weight: 400;
-}
-
-.widget-26 .widget-26-job-info {
+.article-nickname, article-createdAt
+{
     min-width: 100px;
     font-weight: 400;
 }
 
-.widget-26 .widget-26-job-info p {
-    line-height: 1.5;
-    color: #3c4142;
-    font-size: 0.8125rem;
-}
 
-.widget-26 .widget-26-job-info .location {
-    color: #3c4142;
-}
-
-.widget-26 .widget-26-job-salary {
+.article-hashtag {
     min-width: 70px;
     font-weight: 400;
     color: #3c4142;
     font-size: 0.8125rem;
 }
 
-.widget-26 .widget-26-job-category {
+.widget-26 .article-job-category {
     padding: .5rem;
     display: inline-flex;
     white-space: nowrap;
     border-radius: 15px;
 }
 
-.widget-26 .widget-26-job-category .indicator {
+.widget-26 .article-job-category .indicator {
     width: 13px;
     height: 13px;
     margin-right: .5rem;
@@ -90,19 +53,19 @@ body{
     border-radius: 50%;
 }
 
-.widget-26 .widget-26-job-category span {
+.widget-26 .article-job-category span {
     font-size: 0.8125rem;
     color: #3c4142;
     font-weight: 600;
 }
 
-.widget-26 .widget-26-job-starred svg {
+.widget-26 .article-job-starred svg {
     width: 20px;
     height: 20px;
     color: #fd8b2c;
 }
 
-.widget-26 .widget-26-job-starred svg.starred {
+.widget-26 .article-job-starred svg.starred {
     fill: #fd8b2c;
 }
 .bg-soft-base {
