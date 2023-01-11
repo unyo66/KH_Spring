@@ -8,12 +8,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import java.util.Optional;
 
 /*
-* @Configuration : 설정파일 만들기 위한 어노테이션 or Bean으로 등록하기 위한 어노테이션
+* @Configuration : 설정파일 만들기 위한 에너테이션 or Bean으로 등록하기 위한 에너테이션
 * */
 @Configuration
 
 /*
-* @EnableJpaAuditing : jpa에서 자동으로 세팅하게 해줄때 사용하는 어노테이션
+* @EnableJpaAuditing : jpa에서 자동으로 세팅하게 해줄때 사용하는 에너테이션
 * */
 @EnableJpaAuditing
 public class JpaConfig {
