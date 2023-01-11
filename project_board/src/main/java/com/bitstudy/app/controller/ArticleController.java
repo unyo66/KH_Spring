@@ -4,7 +4,9 @@ import com.bitstudy.app.domain.type.SearchType;
 import com.bitstudy.app.dto.response.ArticleResponse;
 import com.bitstudy.app.dto.response.ArticleWithCommentsResponse;
 import com.bitstudy.app.service.ArticleService;
+import com.bitstudy.app.service.PaginationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -41,12 +43,23 @@ public class ArticleController {
         없으면 게시글 전체 조회하면 되니까  (required = false) 달아서 null 들어올 수 있게 함.
         @PageableDefault: 페이징 기본설정 (한페이지에 10개, 작성일 순, 내림차순-최근)
      */
+
+
+    /* 페이징 서비스 */
+    private final PaginationService paginationService;
+
     @GetMapping
     public String articles(@RequestParam(required = false) SearchType searchType,
                            @RequestParam(required = false) String searchKeyword,
                            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
                            ModelMap map) {
-        map.addAttribute("articles", articleService.searchArticles(searchType, searchKeyword, pageable).map(ArticleResponse::from));
+//        map.addAttribute("articles", articleService.searchArticles(searchType, searchKeyword, pageable).map(ArticleResponse::from));
+
+        Page<ArticleResponse> articles = articleService.searchArticles(searchType,searchKeyword,pageable).map(ArticleResponse::from);
+        List<Integer> barNumbers = paginationService.getPaginationBarNumbers(pageable.getPageNumber(), articles.getTotalPages());
+        map.addAttribute("articles", articles);
+        map.addAttribute("paginationBarNumbers", barNumbers);
+
         return "articles/index";
     }
 

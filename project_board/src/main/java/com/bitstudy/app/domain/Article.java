@@ -19,7 +19,7 @@ import java.util.Set;
 *
 *   순서
 *   1) Lombok을 이용해서 클래스를 엔티티로 변경
-*   2) getter / setter, toString 등의 Lombok 어노테이션 사용
+*   2) getter / setter, toString 등의 Lombok 에너테이션 사용
 *   3) 동등성, 동일성 비교할 수 있는 코드 넣기
 * */
 
@@ -34,7 +34,7 @@ import java.util.Set;
 *           @Embedded
 *           Tmp tmp;
 *
-*  *2) @MappedSuperClass : 어노테이션이 붙은곳에서 사용
+*  *2) @MappedSuperClass : 에너테이션이 붙은곳에서 사용
 *
 * */
 
@@ -58,7 +58,7 @@ import java.util.Set;
 // 상위(UserAccount)에 있는 toString 까지 출력할 수 있도록 callSuper 넣음
 public class Article extends AuditingFields {
 
-    @Id //PK 지정 어노테이션
+    @Id //PK 지정 에너테이션
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

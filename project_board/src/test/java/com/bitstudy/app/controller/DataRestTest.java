@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 *   -통합 테스트 에너테이션
 *   @SpringBootTest : 스프링이 관리하는 모든 빈을 등록시켜서 테스트 하기 때문에 무거움
 *                       테스트를 가볍게 하기 위해서 @WebMvsTest를 사용해 web 레이어 관련 빈들만 등록한 상태로 테스트를 할 수도 있음
-*                       단 web 레이어 관련 빈들만 등록되므로 Service 는 등록되지 않음. 그래서 Mock 관련 어노테이션을 이용해서 가짜로 만들어줘야 함
+*                       단 web 레이어 관련 빈들만 등록되므로 Service 는 등록되지 않음. 그래서 Mock 관련 에너테이션을 이용해서 가짜로 만들어줘야 함
 *
 *   -슬라이스 테스트 에너테이션
 *   1) @WebMvcTest : 슬라이스 테스트에서 대표적인 에너테이션
