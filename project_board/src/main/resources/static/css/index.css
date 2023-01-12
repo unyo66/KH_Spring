@@ -112,7 +112,7 @@ th a {
 .search-form select {
     background: transparent;
     border: 0;
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 1.7rem;
     height: 100%;
     font-size: 1rem;
 }

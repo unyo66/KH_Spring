@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 뷰 엔드 포인트 관련 컨트롤러
@@ -53,12 +54,14 @@ public class ArticleController {
                            @RequestParam(required = false) String searchKeyword,
                            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
                            ModelMap map) {
-//        map.addAttribute("articles", articleService.searchArticles(searchType, searchKeyword, pageable).map(ArticleResponse::from));
 
         Page<ArticleResponse> articles = articleService.searchArticles(searchType,searchKeyword,pageable).map(ArticleResponse::from);
         List<Integer> barNumbers = paginationService.getPaginationBarNumbers(pageable.getPageNumber(), articles.getTotalPages());
         map.addAttribute("articles", articles);
         map.addAttribute("paginationBarNumbers", barNumbers);
+        /* enum.values() : 요소들을 배열로 넘겨준다 */
+        map.addAttribute("searchTypes", SearchType.values());
+        map.addAttribute("totalCount", articleService.getArticleCount());
         return "articles/index";
     }
 
