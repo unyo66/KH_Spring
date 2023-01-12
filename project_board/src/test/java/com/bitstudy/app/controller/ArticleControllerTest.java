@@ -1,6 +1,7 @@
 package com.bitstudy.app.controller;
 
 import com.bitstudy.app.config.SecurityConfig;
+import com.bitstudy.app.domain.type.SearchType;
 import com.bitstudy.app.dto.ArticleWithCommentsDto;
 import com.bitstudy.app.dto.CommentDto;
 import com.bitstudy.app.dto.UserAccountDto;
@@ -16,13 +17,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import com.bitstudy.app.service.PaginationService;
+
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -43,8 +46,11 @@ class ArticleControllerTest {
 
     @MockBean // 실제 articleService 를 사용하지 않기 위해 진짜 객체 대신 테스트용 객체를 Bean 으로 등록
     private ArticleService articleService;
-    @Autowired
-    private ArticleRepository articleRepository;
+//    @Autowired
+//    private ArticleRepository articleRepository;
+    @MockBean
+    private PaginationService paginationService;
+
 
     public ArticleControllerTest(@Autowired MockMvc mvc){
         this.mvc = mvc;
@@ -73,6 +79,35 @@ class ArticleControllerTest {
                 .andExpect(model().attributeExists("articles"));
         then(articleService).should().searchArticles(eq(null), eq(null), any(Pageable.class));
     }
+
+    /** 1.5) 게시글 전체 테스트 (검색어와) */
+    @DisplayName("[view][GET] 게시글 리스트 검색어와 함께")
+    @Test
+    public void givenKeywordReturnArticles() throws Exception {
+
+        //Given
+        SearchType testSearchType = SearchType.TITLE;
+        String testSearchKeyword = "title";
+        /* Pageble 을 any 로 줬기 때문에 모든 매개변수를 matcher 로 줘야 함. 왜? */
+        given(articleService.searchArticles(eq(testSearchType), eq(testSearchKeyword), any(Pageable.class))).willReturn(Page.empty());
+        /* 검색 했을때 페이징 기능을 호출하는가만 보면 됨. */
+        given(paginationService.getPaginationBarNumbers(anyInt(), anyInt())).willReturn(List.of(1, 2, 3, 4));
+
+        //When
+        //Then
+        mvc.perform(
+                get("/articles")
+                        .queryParam("searchType", testSearchType.name())
+                        .queryParam("searchKeyword", testSearchKeyword))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(view().name("articles/index"))
+                .andExpect(model().attributeExists("articles"))
+                .andExpect(model().attributeExists("paginationBarNumbers"));
+        then(articleService).should().searchArticles(eq(testSearchType), eq(testSearchKeyword), any(Pageable.class));
+        then(paginationService).should().getPaginationBarNumbers(anyInt(), anyInt());
+    }
+
 
     /**2) 게시글 상세 테스트*/
     @Test
