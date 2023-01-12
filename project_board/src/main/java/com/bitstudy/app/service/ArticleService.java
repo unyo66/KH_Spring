@@ -85,4 +85,9 @@ public class ArticleService {
     public void deleteArticle(long articleId) {
         articleRepository.deleteById(articleId);
     }
+
+    /** 게시글 개수 구하기 : 이전, 다음 버튼 비활성화용 */
+    public long getArticleCount() {
+        return articleRepository.count();
+    }
 }
