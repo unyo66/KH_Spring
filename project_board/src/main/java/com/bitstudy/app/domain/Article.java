@@ -60,10 +60,11 @@ public class Article extends AuditingFields {
 
     @Id //PK 지정 에너테이션
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Setter
     @ManyToOne(optional = false) // 단방향
+    @JoinColumn(name="userId")
     private UserAccount userAccount;
 
 
@@ -161,7 +162,7 @@ public class Article extends AuditingFields {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Article article = (Article) o;
-        return id.equals(article.id);
+        return id == article.id;
     }
 
     @Override

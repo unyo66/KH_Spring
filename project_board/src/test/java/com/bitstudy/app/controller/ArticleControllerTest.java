@@ -115,40 +115,25 @@ class ArticleControllerTest {
     public void articleOne() throws Exception {
 
         Long articleId = 1L;
-//        given(articleService.getArticle(articleId)).willReturn()
+        long totalCount = 1L;
+        given(articleService.getArticleWithComments(articleId)).willReturn(createArticleWithCommentsDto());
+        given(articleService.getArticleCount()).willReturn(totalCount);
+
         mvc.perform(get("/articles/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("articles/detail"))
                 .andExpect(model().attributeExists("article"))
                 .andExpect(model().attributeExists("comments"));
-//        then(articleService).should()
-    }
 
-    /**3) 해시태그 검색 테스트*/
-    @Test
-    @DisplayName("[view][GET] 게시글 검색 페이지 - 정상호출")
-    public void search() throws Exception {
-        mvc.perform(get("/articles/search_hashtag"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("articles/search"));
-    }
-    /**4) 해시태그 검색 테스트*/
-    @Test
-    @DisplayName("[view][GET] 해시태그 검색 페이지 - 정상호출")
-    public void hashtag() throws Exception {
-        mvc.perform(get("/articles/search_hashtag"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("articles/search_hashtag"));
+        then(articleService).should().getArticleWithComments(articleId);
+        then(articleService).should().getArticleCount();
     }
 
     ////////////////////////////////////////////
 
     private UserAccountDto createUserAccountDto() {
         return UserAccountDto.of(
-                1L,
                 "bitstudy",
                 "asdf",
                 "bitstudy@email.com",

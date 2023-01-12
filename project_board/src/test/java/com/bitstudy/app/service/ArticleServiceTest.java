@@ -8,6 +8,7 @@ import com.bitstudy.app.dto.ArticleWithCommentsDto;
 import com.bitstudy.app.dto.CommentDto;
 import com.bitstudy.app.dto.UserAccountDto;
 import com.bitstudy.app.repository.ArticleRepository;
+import com.bitstudy.app.repository.UserAccountRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,6 +46,9 @@ class ArticleServiceTest {
 
     @Mock
     private ArticleRepository articleRepository; // 의존하는걸 가져와야 함. (테스트 중간에 mocking 할때 필요)
+
+    @Mock
+    private UserAccountRepository userAccountRepository; // 의존하는걸 가져와야 함. (테스트 중간에 mocking 할때 필요)
 
     /** 3. 페이지네이션 */
 
@@ -92,10 +96,10 @@ class ArticleServiceTest {
         given(articleRepository.findById(articleId)).willReturn(Optional.of(article));
 
         //When - 입력없는지(null) 실제 테스트 돌리는 부분
-        ArticleWithCommentsDto articleWithCommentsDto = sut.getArticle(articleId);
+        ArticleDto articleDto = sut.getArticle(articleId);
 
         //Then
-        assertThat(articleWithCommentsDto)
+        assertThat(articleDto)
                 .hasFieldOrPropertyWithValue("title", article.getTitle())
                 .hasFieldOrPropertyWithValue("content", article.getContent())
                 .hasFieldOrPropertyWithValue("hashtag", article.getHashtag());
@@ -110,7 +114,7 @@ class ArticleServiceTest {
         ArticleDto articleDto = createArticleDto();
         /* any : 어떤 Article.class 가 들어오든 상관없다 */
         given(articleRepository.save(any(Article.class))).willReturn(createTestArticle());
-
+        given(userAccountRepository.getReferenceById(articleDto.userAccountDto().userId())).willReturn(createTestUserAccount());
         //When
         sut.saveArticle(articleDto);
         //Then
@@ -130,7 +134,7 @@ class ArticleServiceTest {
                 .willReturn(article);
 
         //When
-        sut.updateArticle(articleDto);
+        sut.updateArticle(articleDto.id(), articleDto);
 
         //Then
         assertThat(article)
@@ -185,7 +189,7 @@ class ArticleServiceTest {
     }
 
     private UserAccountDto createUserAccountDto() {
-        return UserAccountDto.of(1L, "bitstudy", "asdf", "bitstudy@email.com", "bitstudy", "memomemo", LocalDateTime.now(), "bitstudy", LocalDateTime.now(), "bitstudy");
+        return UserAccountDto.of("bitstudy", "asdf", "bitstudy@email.com", "bitstudy", "memomemo", LocalDateTime.now(), "bitstudy", LocalDateTime.now(), "bitstudy");
     }
     private ArticleDto createArticleDto() {
         return createArticleDto("title", "content", "#java");

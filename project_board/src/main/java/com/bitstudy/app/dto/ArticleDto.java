@@ -51,9 +51,9 @@ public record ArticleDto( /* 우선 엔티티가 가지고 있는 모든 정보�
     }
 
     /* 위에거랑 반대. dto 를 주면 엔티티를 생성하는 메서드 */
-    public Article toEntity() {
+    public Article toEntity(UserAccount userAccount) {
         return Article.of(
-                userAccountDto.toEntity(),
+                userAccount,
                 title,
                 content,
                 hashtag

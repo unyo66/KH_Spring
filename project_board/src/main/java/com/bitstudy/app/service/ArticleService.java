@@ -2,10 +2,12 @@ package com.bitstudy.app.service;
 
 
 import com.bitstudy.app.domain.Article;
+import com.bitstudy.app.domain.UserAccount;
 import com.bitstudy.app.domain.type.SearchType;
 import com.bitstudy.app.dto.ArticleDto;
 import com.bitstudy.app.dto.ArticleWithCommentsDto;
 import com.bitstudy.app.repository.ArticleRepository;
+import com.bitstudy.app.repository.UserAccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,6 +24,7 @@ import javax.persistence.EntityNotFoundException;
 @Transactional //
 public class ArticleService {
     private final ArticleRepository articleRepository; // 아티클 관련 서비스 이기 때문에 ArticleRepository 필요
+    private final UserAccountRepository userAccountRepository; // 유저 관련 정보 가져오기
 
     // 검색용
     @Transactional(readOnly = true) // 트랜잭션을 읽기 전용 모드로 설정. 실수로 커밋해도 flush 가 되지 않아서 엔티티가 등록, 수정, 삭제 가 되지 않는다.
@@ -52,23 +55,33 @@ public class ArticleService {
         };
     }
 
-    /** 게시글 하나 호출 */
+    /** 게시글 하나 호출 댓글까지 */
     @Transactional(readOnly = true)
-    public ArticleWithCommentsDto getArticle(Long articleId) {
+    public ArticleWithCommentsDto getArticleWithComments(Long articleId) {
         return articleRepository.findById(articleId)
                 .map(ArticleWithCommentsDto::from)
                 .orElseThrow(() -> new EntityNotFoundException("게시글이 없습니다.")); //Dto로 변경
     }
 
+    /** 게시글 하나 호출 댓글까지 */
+    @Transactional(readOnly = true)
+    public ArticleDto getArticle(Long articleId) {
+        return articleRepository.findById(articleId)
+                .map(ArticleDto::from)
+                .orElseThrow(() -> new EntityNotFoundException("게시글이 없습니다.")); //Dto로 변경
+    }
+
+
     /** 게시글 생성 */
     public void saveArticle(ArticleDto articleDto) {
-        articleRepository.save(articleDto.toEntity()); //Dto 를 엔티티로 바꾸기
+        UserAccount userAccount = userAccountRepository.getReferenceById(articleDto.userAccountDto().userId());
+        articleRepository.save(articleDto.toEntity(userAccount)); //Dto 를 엔티티로 바꾸기
     }
 
     /** 게시글 수정 */
-    public void updateArticle(ArticleDto articleDto) {
+    public void updateArticle(Long articleId, ArticleDto articleDto) {
         try {
-            Article article = articleRepository.getReferenceById(articleDto.id());
+            Article article = articleRepository.getReferenceById(articleId);
             if (articleDto.title() != null) {
                 article.setTitle(articleDto.title());
             }

@@ -100,7 +100,7 @@ class CommentServiceTest {
 
     ///////////////////////////////////////////////////////
     private UserAccountDto createUserAccountDto() {
-        return UserAccountDto.of(1L, "bitstudy", "asdf", "bitstudy@email.com", "bitstudy", "memomemo", LocalDateTime.now(), "bitstudy", LocalDateTime.now(), "bitstudy");
+        return UserAccountDto.of("bitstudy", "asdf", "bitstudy@email.com", "bitstudy", "memomemo", LocalDateTime.now(), "bitstudy", LocalDateTime.now(), "bitstudy");
     }
     private CommentDto createCommentDto(String content) {
         return CommentDto.of(
