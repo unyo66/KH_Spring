@@ -145,11 +145,26 @@ class ArticleServiceTest {
     @Test
     void getInfoDeleteArticle() {
         //Given
+        long expected = 0L;
+        given(articleRepository.count()).willReturn(expected);
+        //When
+        long actual = sut.getArticleCount();
+        //Then
+        assertThat(actual).isEqualTo(expected);
+        then(articleRepository).should().count();
+    }
+
+
+    @DisplayName("게시글 개수 구하기")
+    @Test
+    void returnArticleCount() {
+        //Given
 
         //When
 
         //Then
     }
+
 
     private UserAccount createTestUserAccount() {
         return UserAccount.of(

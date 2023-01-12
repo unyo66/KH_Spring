@@ -29,8 +29,15 @@ body{
     min-width: 100px;
     font-weight: 400;
 }
-
-
+th a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #3c4142;
+}
+.checked-sort {
+    color: #222;
+    font-width: 800;
+}
 .article-hashtag {
     min-width: 70px;
     font-weight: 400;

@@ -23,7 +23,8 @@ public class PaginationService {
         *  현재 선택한 페이지 번호가 페이징 부분의 가운데에 위치하게 만들거임.
         *  */
 
-        int startNumber = Math.max(0, currentPageNumber - (BAR_LENGTH / 2));
+//        int startNumber = Math.max(0, currentPageNumber - (BAR_LENGTH / 2));
+        int startNumber = Math.max(0, currentPageNumber / BAR_LENGTH * 5); // 페이징 5개씩 움직이게 하기
         int endNumber = Math.min((startNumber + BAR_LENGTH), totalPages);
 
 
